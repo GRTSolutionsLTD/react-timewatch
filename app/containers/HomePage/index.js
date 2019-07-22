@@ -7,16 +7,27 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Button } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 
 import messages from './messages';
 import './index.scss';
 
 export default function HomePage() {
+  const activeStyle = { color: '#F15B2A' };
   return (
-    <h1 className="home">
-      <Button color="danger">Danger!</Button>
-      <FormattedMessage {...messages.header} />
-    </h1>
+    <>
+      <h1>
+        <FormattedMessage {...messages.header} />
+      </h1>
+      <nav>
+        <NavLink to="/register" activeStyle={activeStyle} exact>
+          Register
+        </NavLink>
+        {' | '}
+        <NavLink to="/reports" activeStyle={activeStyle}>
+          Reports
+        </NavLink>
+      </nav>
+    </>
   );
 }
