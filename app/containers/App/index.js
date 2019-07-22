@@ -9,20 +9,19 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
 import HomePage from 'containers/HomePage/Loadable';
-import RegisterPage from 'containers/RegisterPage/Loadable';
 import ReportsPage from 'containers/ReportsPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Header from '../../components/Header/Loadable';
 
 import GlobalStyle from '../../global-styles';
 
 export default function App() {
   return (
     <div>
+      <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/register" component={RegisterPage} />
         <Route path="/reports" component={ReportsPage} />
         <Route component={NotFoundPage} />
       </Switch>
