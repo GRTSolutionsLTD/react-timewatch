@@ -13,7 +13,7 @@ import './index.scss';
 export function HomePage({ todayReport, onClick }) {
   const [isRegistered, setIsRegistered] = useState();
   useEffect(() => {
-    setIsRegistered(todayReport !== null);
+    setIsRegistered(todayReport !== 'undefined');
   });
   return (
     <>
@@ -29,7 +29,7 @@ HomePage.propTypes = {
 };
 
 const mapStateToProps = createStructuredSelector({
-  reportsList: makeSelectGetTodaysReports(),
+  todayReport: makeSelectGetTodaysReports(),
 });
 
 const mapDispatchToProps = dispatch => ({

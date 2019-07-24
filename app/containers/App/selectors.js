@@ -14,7 +14,6 @@ const makeSelectGetList = () =>
 const makeSelectGetTodaysReports = () =>
   createSelector(
     selectGlobal,
-    // todo change the func to retun todays record
     globalState =>
       find(globalState.reportsList, { date: moment().format('M/DD/YYYY') }),
   );
