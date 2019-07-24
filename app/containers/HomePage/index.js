@@ -10,10 +10,10 @@ import { makeSelectGetTodaysReports } from '../App/selectors';
 import { UpdateTodaysRegistrarion } from '../App/actions';
 import './index.scss';
 
-export function HomePage({ reportsList, onClick }) {
+export function HomePage({ todayReport, onClick }) {
   const [isRegistered, setIsRegistered] = useState();
   useEffect(() => {
-    setIsRegistered(reportsList.length !== 0);
+    setIsRegistered(todayReport !== null);
   });
   return (
     <>
@@ -24,7 +24,7 @@ export function HomePage({ reportsList, onClick }) {
 }
 
 HomePage.propTypes = {
-  reportsList: PropTypes.array,
+  todayReport: PropTypes.object,
   onClick: PropTypes.func,
 };
 
