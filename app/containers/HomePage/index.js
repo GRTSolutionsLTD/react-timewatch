@@ -1,21 +1,49 @@
-/*
- * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
- *
- */
+import React, { memo, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { Button } from 'reactstrap';
 
-import React from 'react';
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import { createStructuredSelector } from 'reselect';
+import Clock from '../../components/Clock/Clock';
+import { makeSelectGetTodaysReports } from '../App/selectors';
+import { UpdateTodaysRegistrarion } from '../App/actions';
 import './index.scss';
 
-export default function HomePage() {
+export function HomePage({ reportsList, onClick }) {
+  const [isRegistered, setIsRegistered] = useState();
+  useEffect(() => {
+    setIsRegistered(reportsList.length !== 0);
+  });
   return (
     <>
-      <h1>
-        <FormattedMessage {...messages.header} />
-      </h1>
+      <Clock />
+      <Button onClick={onClick}>{isRegistered ? 'Exit' : 'Register'}</Button>
     </>
   );
 }
+
+HomePage.propTypes = {
+  reportsList: PropTypes.array,
+  onClick: PropTypes.func,
+};
+
+const mapStateToProps = createStructuredSelector({
+  reportsList: makeSelectGetTodaysReports(),
+});
+
+const mapDispatchToProps = dispatch => ({
+  onClick: () => {
+    dispatch(UpdateTodaysRegistrarion());
+  },
+});
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(
+  withConnect,
+  memo,
+)(HomePage);

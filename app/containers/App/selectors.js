@@ -1,11 +1,19 @@
 import { createSelector } from 'reselect';
+import { initialState } from './reducer';
 
-const selectRouter = state => state.router;
+const selectGlobal = state => initialState || state.global;
 
-const makeSelectLocation = () =>
+const makeSelectGetList = () =>
   createSelector(
-    selectRouter,
-    routerState => routerState.location,
+    selectGlobal,
+    globalState => globalState.reportsList,
   );
 
-export { makeSelectLocation };
+const makeSelectGetTodaysReports = () =>
+  createSelector(
+    selectGlobal,
+    // todo change the func to retun todays record
+    globalState => globalState.reportsList.filter(r => r.enter.startsWith('r')),
+  );
+
+export { selectGlobal, makeSelectGetList, makeSelectGetTodaysReports };
