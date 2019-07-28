@@ -13,10 +13,10 @@ import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import DatePicker from "react-datepicker";
 
-// import { filter } from 'lodash';
-// import moment from 'moment';
+import { filter } from 'lodash';
+import moment from 'moment';
 
-// import { DATE_FORMAT } from '../App/constants';
+import { DATE_FORMAT } from '../App/constants';
 import { makeSelectGetList } from '../App/selectors';
 import messages from './messages';
 import './report-page.scss';
@@ -28,8 +28,7 @@ export function ReportsPage({ reportList }) {
   const [toDate, setToDate] = useState(new Date())
 
   const onFilterList = () => {
-    // const list = filter(reportList, report => moment(report.date, DATE_FORMAT).isBetween(moment(fromDate), moment(toDate)));
-    const list = reportList;
+    const list = filter(reportList, report => moment(report.date, DATE_FORMAT).isBetween(moment(fromDate), moment(toDate)));
     setListItem(list);
   }
 
@@ -47,20 +46,29 @@ export function ReportsPage({ reportList }) {
         <meta name="description" content="Description of ReportsPage" />
       </Helmet>
       <FormattedMessage {...messages.header} />
-      {listItems}
-      <h3>סנן על פי תאריך</h3>
-      <p>מ:</p>
-      <DatePicker
-        selected={fromDate}
-        onChange={(date) => setFromDate(date)}
-      />
-      <p>עד:</p>
-      <DatePicker
-        selected={toDate}
-        onChange={(date) => setToDate(date)}
-      />
-      <br />
-      <input type="button" value="סנן" onClick={onFilterList}></input>
+      <table>
+        <tr>
+          <th>enter hour</th>
+          <th>leave hour</th>
+          <th>date</th>
+        </tr>
+        {listItems}
+      </table>
+      <div className="filterBlock">
+        <h4>-filter by date-</h4>
+        <p>from date  :  </p>
+        <DatePicker
+          selected={fromDate}
+          onChange={(date) => setFromDate(date)}
+        />
+        <p>to date  :  </p>
+        <DatePicker
+          selected={toDate}
+          onChange={(date) => setToDate(date)}
+        />
+        <br />
+        <input type="button" value="filter" onClick={onFilterList}></input>
+      </div>
     </div>
 
   );
