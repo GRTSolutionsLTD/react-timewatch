@@ -1,10 +1,8 @@
 import { createSelector } from 'reselect';
-import { find } from 'lodash';
+import { filter } from 'lodash';
 import moment from 'moment';
 import { initialState } from './reducer';
-import { DATE_FORMAT } from './constants';
-
-const selectGlobal = state => initialState || state.global;
+const selectGlobal = state => state.global || initialState;
 
 const makeSelectGetList = () =>
   createSelector(
@@ -12,11 +10,10 @@ const makeSelectGetList = () =>
     globalState => globalState.reportsList,
   );
 
-const makeSelectGetTodaysReports = () =>
+const makeSelectGetTodaysReports = state =>
   createSelector(
     selectGlobal,
-    globalState =>
-      find(globalState.reportsList, { date: moment().format(DATE_FORMAT) }),
+    filter(state.reportsList, { date: moment().format('M/DD/YYYY') }),
   );
 
 export { selectGlobal, makeSelectGetList, makeSelectGetTodaysReports };

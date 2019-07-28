@@ -7,28 +7,28 @@
 import React, { memo } from 'react';
 // import PropTypes from 'prop-types';
 // import styled from 'styled-components';
+import { Nav, NavItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-
-import { FormattedMessage } from 'react-intl';
-import messages from './messages';
+import '../Clock/Clock.scss';
 
 function Header() {
   const activeStyle = { color: '#F15B2A' };
 
   return (
     <>
-      <div>
-        <FormattedMessage {...messages.header} />
-      </div>
-      <nav>
-        <NavLink to="/register" activeStyle={activeStyle} exact>
-          Register
-        </NavLink>
+      <Nav>
+        <NavItem>
+          <NavLink to="/register" activeStyle={activeStyle} exact>
+            Register
+          </NavLink>
+        </NavItem>
         {' | '}
-        <NavLink to="/reports" activeStyle={activeStyle}>
-          Reports
-        </NavLink>
-      </nav>
+        <NavItem>
+          <NavLink to="/reports" activeStyle={activeStyle}>
+            Reports
+          </NavLink>
+        </NavItem>
+      </Nav>
     </>
   );
 }

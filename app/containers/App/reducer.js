@@ -1,18 +1,25 @@
-import produce from 'immer';
-import { UPDATE_TODAYS_REGISTRATION } from './constants';
-import * as data from '../../data/reports.json';
-
+import * as actionTypes from './constants';
+// The initial state of the App
 export const initialState = {
-  reportsList: data.default,
+  loading: true,
+  reportsList: [],
+  error: null,
 };
-/* eslint-disable default-case, no-param-reassign */
-const appReducer = (state = initialState, action) =>
-  produce(state, (draft) => {
-    switch (action.type) {
-      case UPDATE_TODAYS_REGISTRATION:
-        draft.reportsList = [action.updateRecord]
-        break;
-    }
-  });
+
+export function appReducer(state = initialState, action) {
+  switch (action.type) {
+    case actionTypes.GET_REPORTS:
+      return { ...state, reportsList: [], loading: true };
+    case actionTypes.GET_REPORTS_SUCCESS:
+      return { ...state, reportsList: action.response, loading: false };
+    case actionTypes.UPDATE_TODAYS_REGISTRATION:
+      return {
+        ...state,
+        reportsList: [action.addRecord(state.reportsList)],
+      };
+    default:
+      return state;
+  }
+}
 
 export default appReducer;

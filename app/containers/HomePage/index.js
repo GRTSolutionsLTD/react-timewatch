@@ -4,19 +4,21 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 
-import { createStructuredSelector } from 'reselect';
 import Clock from '../../components/Clock/Clock';
-import { makeSelectGetTodaysReports } from '../App/selectors';
 import { UpdateTodaysRegistrarion } from '../App/actions';
 import './index.scss';
 
-export function HomePage({ todayReport, onClick }) {
-  const [isRegistered, setIsRegistered] = useState();
+export function HomePage({ reportsList, onClick, loading }) {
+  const [isRegistered, setIsRegistered] = useState(false);
   useEffect(() => {
-    setIsRegistered(todayReport !== 'undefined');
+    if (loading !== undefined && !loading) {
+      setIsRegistered(true);
+    }
   });
+
   return (
     <>
+      {reportsList}
       <Clock />
       <Button onClick={onClick}>{isRegistered ? 'Exit' : 'Register'}</Button>
     </>
@@ -24,14 +26,14 @@ export function HomePage({ todayReport, onClick }) {
 }
 
 HomePage.propTypes = {
-  todayReport: PropTypes.object,
+  reportsList: PropTypes.array,
+  loading: PropTypes.bool,
   onClick: PropTypes.func,
 };
-
-const mapStateToProps = createStructuredSelector({
-  todayReport: makeSelectGetTodaysReports(),
+const mapStateToProps = state => ({
+  reportsList: state.global.reportsList,
+  loading: state.global.loading,
 });
-
 const mapDispatchToProps = dispatch => ({
   onClick: () => {
     dispatch(UpdateTodaysRegistrarion());
@@ -47,3 +49,11 @@ export default compose(
   withConnect,
   memo,
 )(HomePage);
+
+/*
+  
+if wasnt registerd today -register button is enabled 
+if registers -enter new record with date and time
+
+
+ */

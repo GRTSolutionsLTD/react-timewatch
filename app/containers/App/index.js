@@ -7,15 +7,21 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import HomePage from 'containers/HomePage/Loadable';
 import ReportsPage from 'containers/ReportsPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import Header from '../../components/Header/Loadable';
 import GlobalStyle from '../../global-styles';
-
-export default function App() {
+import { getReports } from './actions';
+export function App({ onLoad }) {
+  useEffect(() => {
+    onLoad();
+  });
   return (
     <div>
       <Header />
@@ -29,3 +35,15 @@ export default function App() {
     </div>
   );
 }
+App.propTypes = {
+  onLoad: PropTypes.func,
+};
+const mapDispatchToProps = dispatch => ({
+  onLoad: () => {
+    dispatch(getReports());
+  },
+});
+export default connect(
+  null,
+  mapDispatchToProps,
+)(App);
