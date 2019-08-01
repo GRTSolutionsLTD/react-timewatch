@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="34px" height="22px" viewBox="0 0 34 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Youtube - Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Footer---1" transform="translate(-210.000000, -478.000000)">
+            <g id="Stacked-Group-4" transform="translate(110.000000, 464.000000)">
+                <g id="Social-Icons" transform="translate(0.000000, 8.000000)">
+                    <g id="Youtube---Icon" transform="translate(100.000000, 6.000000)">
+                        <path d="M31.9117647,2.2 C31.0882353,0.6 30.0588235,0.4 28,0.2 C25.9411765,0 21,0 16.6764706,0 C12.3529412,0 7.41176471,0 5.35294118,0.2 C3.29411765,0.4 2.47058824,0.6 1.44117647,2.2 C0.617647059,3.8 0,6.4 0,11 C0,11 0,11 0,11 C0,11 0,11 0,11 C0,15.6 0.411764706,18.4 1.44117647,19.8 C2.26470588,21.4 3.29411765,21.6 5.35294118,21.8 C7.41176471,22 12.3529412,22 16.6764706,22 C21,22 25.9411765,22 28,21.8 C30.0588235,21.6 30.8823529,21.4 31.9117647,19.8 C32.9411765,18.2 33.3529412,15.6 33.3529412,11 C33.3529412,11 33.3529412,11 33.3529412,11 C33.3529412,11 33.3529412,11 33.3529412,11 C33.3529412,6.4 32.9411765,3.6 31.9117647,2.2 Z" id="Shape" fill="#F44336"></path>
+                        <polygon id="Shape" fill="#FAFAFA" points="12.7647059 17 12.7647059 5 23.0588235 11"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

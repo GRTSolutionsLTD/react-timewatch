@@ -1,38 +1,40 @@
-/**
- *
- * Header
- *
- */
-
 import React, { memo } from 'react';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
-import { Nav, NavItem } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
-import '../Clock/Clock.scss';
 
+import {
+  Navbar,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  Container,
+} from 'reactstrap';
+import { FormattedMessage } from 'react-intl';
+import messages from './messages';
+import './Header.scss';
 function Header() {
-  const activeStyle = { color: '#F15B2A' };
-
   return (
-    <>
-      <Nav>
-        <NavItem>
-          <NavLink to="/register" activeStyle={activeStyle} exact>
-            Register
-          </NavLink>
-        </NavItem>
-        {' | '}
-        <NavItem>
-          <NavLink to="/reports" activeStyle={activeStyle}>
-            Reports
-          </NavLink>
-        </NavItem>
-      </Nav>
-    </>
+    <Container>
+      <Navbar className="nav nav-tabs">
+        <div className="nav-item">
+          <NavbarBrand className="nav-link active" href="/">
+            <FormattedMessage {...messages.header} />
+          </NavbarBrand>
+        </div>
+        <Nav>
+          <NavItem className="nav-item">
+            <NavLink className="nav-link" href="/register">
+              Register
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink className="nav-link" href="/reports">
+              Reports
+            </NavLink>
+          </NavItem>
+        </Nav>
+      </Navbar>
+    </Container>
   );
 }
-
-Header.propTypes = {};
 
 export default memo(Header);

@@ -1,0 +1,12 @@
+@import '../../containers/App/index.scss';
+.container {
+  background-color: $base-color;
+  width: 100%;
+  min-height: 100px;
+}
+.fixed-bottom {
+  border-top: solid 1px black;
+}
+a {
+  color: black;
+}

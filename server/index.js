@@ -1,20 +1,19 @@
-/* eslint consistent-return:0 import/order:0 */
+// import moment from 'moment';
 
 const express = require('express');
-const logger = require('./logger');
 
 const fs = require('fs');
 const bodyParser = require('body-parser');
-
+const ngrok1 = require('ngrok');
+const { resolve } = require('path');
 const argv = require('./argv');
 const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
+
 const isDev = process.env.NODE_ENV !== 'production';
 const ngrok =
-  (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel
-    ? require('ngrok')
-    : false;
-const { resolve } = require('path');
+  (isDev && process.env.ENABLE_TUNNEL) || argv.tunnel ? ngrok1 : false;
+const logger = require('./logger');
 const app = express();
 
 // configure the app to use bodyParser()
@@ -35,11 +34,16 @@ app.get('/api/reports/list', (req, res) => {
   });
 });
 
-app.post('/api/reports/add', (req, res) => {
+app.get('/api/reports/add', (req, res) => {
   fs.readFile(jsonPath, 'utf8', (err, data) => {
     data = JSON.parse(data);
-    const report = req.body;
-    const newData = [...data, report];
+    const record = {
+      id: 4,
+      enter: new Date(),
+      leave: '',
+      // date: moment().format('M/DD/YYYY'),
+    };
+    const newData = [...data, record];
     const jsonData = JSON.stringify(newData);
 
     fs.writeFile(jsonPath, jsonData, writeFileErr => {
@@ -52,14 +56,29 @@ app.post('/api/reports/add', (req, res) => {
   });
 });
 
-// app.get('/api/contacts/:id', (req, res) => {
-//   fs.readFile(jsonPath, 'utf8', (err, data) => {
-//     const contacts = JSON.parse(data);
-//     const contact =
-//       contacts.find(contactObj => contactObj._id === req.params.id) || {};
-//     res.end(JSON.stringify(contact));
-//   });
-// });
+app.get('/api/reports/update', (req, res) => {
+  fs.readFile(jsonPath, 'utf8', (err, data) => {
+    data = JSON.parse(data);
+    // const record = data.find(r => r.date === moment().format('M/DD/YYYY'));
+    const record = data.find();
+    // data = data.remove(r => r.date === moment().format('M/DD/YYYY'));
+    record.leave = new Date();
+    const newData = [...data, record];
+    const jsonData = JSON.stringify(newData);
+    fs.writeFile(
+      jsonPath,
+      jsonData,
+      { encoding: 'utf8', flag: 'a' },
+      writeFileErr => {
+        if (!writeFileErr) {
+          res.end(jsonData);
+        } else {
+          res.end(JSON.stringify(data));
+        }
+      },
+    );
+  });
+});
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
@@ -97,4 +116,5 @@ app.listen(port, host, async err => {
   } else {
     logger.appStarted(port, prettyHost);
   }
+  return null;
 });

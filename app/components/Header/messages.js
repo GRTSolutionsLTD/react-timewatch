@@ -11,6 +11,6 @@ export const scope = 'app.components.Header';
 export default defineMessages({
   header: {
     id: `${scope}.header`,
-    defaultMessage: 'Welcome To TimeWatch!!',
+    defaultMessage: 'Welcome To TimeWatch!',
   },
 });

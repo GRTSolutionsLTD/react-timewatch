@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="35px" height="35px" viewBox="0 0 35 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Facebook - Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Footer---1" transform="translate(-110.000000, -472.000000)">
+            <g id="Stacked-Group-4" transform="translate(110.000000, 464.000000)">
+                <g id="Social-Icons" transform="translate(0.000000, 8.000000)">
+                    <g id="Facebook---Icon">
+                        <path d="M30.625,0 L4.375,0 C1.96875,0 0,1.96875 0,4.375 L0,30.625 C0,33.03125 1.96875,35 4.375,35 L30.625,35 C33.03125,35 35,33.03125 35,30.625 L35,4.375 C35,1.96875 33.03125,0 30.625,0 Z" id="Shape" fill="#1976D2" fill-rule="nonzero"></path>
+                        <path d="M29.53125,17.5 L24.0625,17.5 L24.0625,13.125 C24.0625,11.8125 24.9375,12.03125 26.25,12.03125 L28.4375,12.03125 L28.4375,6.5625 L24.0625,6.5625 C20.34375,6.5625 17.5,9.40625 17.5,13.125 L17.5,17.5 L13.125,17.5 L13.125,22.96875 L17.5,22.96875 L17.5,35 L24.0625,35 L24.0625,22.96875 L27.34375,22.96875 L29.53125,17.5 Z" id="Shape" fill="#FAFAFA"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

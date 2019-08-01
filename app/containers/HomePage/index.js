@@ -1,6 +1,7 @@
 import React, { memo, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'redux';
+import moment from 'moment';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 
@@ -8,19 +9,35 @@ import Clock from '../../components/Clock/Clock';
 import { UpdateTodaysRegistrarion } from '../App/actions';
 import './index.scss';
 
-export function HomePage({ reportsList, onClick, loading }) {
+export function HomePage({ onClick, loading, reportsList }) {
   const [isRegistered, setIsRegistered] = useState(false);
   useEffect(() => {
     if (loading !== undefined && !loading) {
-      setIsRegistered(true);
+      reportsList = reportsList.filter(
+        record => record.date === moment().format('M/DD/YYYY'),
+      );
+      setIsRegistered(reportsList.length !== 0);
     }
   });
-
   return (
     <>
-      {reportsList}
       <Clock />
-      <Button onClick={onClick}>{isRegistered ? 'Exit' : 'Register'}</Button>
+      <div className="align-items-center">
+        <Button
+          name="register"
+          disabled={isRegistered}
+          onClick={event => onClick(event.target.name)}
+        >
+          Register
+        </Button>
+        <Button
+          name="exit"
+          disabled={!isRegistered}
+          onClick={event => onClick(event.target.name)}
+        >
+          Exit
+        </Button>
+      </div>
     </>
   );
 }
@@ -35,8 +52,8 @@ const mapStateToProps = state => ({
   loading: state.global.loading,
 });
 const mapDispatchToProps = dispatch => ({
-  onClick: () => {
-    dispatch(UpdateTodaysRegistrarion());
+  onClick: event => {
+    dispatch(UpdateTodaysRegistrarion(event));
   },
 });
 
@@ -49,11 +66,3 @@ export default compose(
   withConnect,
   memo,
 )(HomePage);
-
-/*
-  
-if wasnt registerd today -register button is enabled 
-if registers -enter new record with date and time
-
-
- */

@@ -11,10 +11,11 @@ import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-
 import HomePage from 'containers/HomePage/Loadable';
 import ReportsPage from 'containers/ReportsPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import Footer from '../../components/Footer/index';
+
 import Header from '../../components/Header/Loadable';
 import GlobalStyle from '../../global-styles';
 import { getReports } from './actions';
@@ -23,7 +24,7 @@ export function App({ onLoad }) {
     onLoad();
   });
   return (
-    <div>
+    <>
       <Header />
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -31,8 +32,9 @@ export function App({ onLoad }) {
         <Route path="/register" component={HomePage} />
         <Route component={NotFoundPage} />
       </Switch>
+      <Footer />
       <GlobalStyle />
-    </div>
+    </>
   );
 }
 App.propTypes = {

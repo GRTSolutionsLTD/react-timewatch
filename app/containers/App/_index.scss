@@ -1,0 +1,23 @@
+$base-color: lightskyblue;
+$social_icons_location: 'https://www.usmobile.com/static/img/icns-fill';
+a {
+  color: lightskyblue;
+}
+
+@media screen and (max-width: 320px) {
+  .container {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 200px;
+  }
+}
+
+@media screen and (min-width: 1224px) {
+  .container {
+    width: 100px;
+  }
+}
